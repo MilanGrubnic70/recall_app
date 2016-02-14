@@ -37,8 +37,8 @@ end
 
 put '/:id' do
 	n = Note.get params[:id]
-	n.content = params[:id]
-	n.complete = params[:id] ? 1 : 0
+	n.content = params[:content]
+	n.complete = params[:complete] ? 1 : 0
 	n.updated_at = Time.now
 	n.save
 	redirect '/'
