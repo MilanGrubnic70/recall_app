@@ -1,6 +1,9 @@
 require "sinatra"
 require "data_mapper"
 
+SITE_TITLE = "Recall"
+SITE_DESCRIPTION = "'cause you're to busy to remember"
+
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/recall.db") # set up database in currrent directory
 
 class Note # create table
