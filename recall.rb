@@ -14,7 +14,7 @@ end
 
 DataMapper.finalize.auto_upgrade! #automatically update database after changes
 
-helpers do 
+helpers do
 	include Rack::Utils
 	alias_method :h, :escape_html
 end
@@ -32,6 +32,11 @@ post '/' do
 	n.updated_at = Time.now
 	n.save
 	redirect '/'
+end
+
+get '/rss.xml' do
+	@notes = Note.all :order => :id.desc
+	builder :rss
 end
 
 get '/:id' do
