@@ -1,10 +1,6 @@
 require "sinatra"
 require "data_mapper"
-require "rack-flash"
-require "sinatra/redirect_with_flash"
 
-enable :sessions
-use rack::Flash, :sweep => true
 
 SITE_TITLE = "Recall"
 SITE_DESCRIPTION = "'cause you're to busy to remember"
@@ -30,9 +26,6 @@ end
 get '/' do
 	@notes = Note.all :order => :id.desc
 	@title = "All Notes"
-	if @notes.empty?
-		flash[:error] = 'No notes found. Add your first note below.'
-	end
 	erb :home
 end
 
