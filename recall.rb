@@ -30,6 +30,9 @@ end
 get '/' do
 	@notes = Note.all :order => :id.desc
 	@title = "All Notes"
+	if @notes.empty?
+		flash[:error] = 'No notes found. Add your first note below.'
+	end
 	erb :home
 end
 
